@@ -16,8 +16,10 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/songs', async (req, res)=>{
+    console.log(req.body)
     const song = new Song({
-        notes: req.body.songNotes
+        notes: req.body.songNotes,
+        title: req.body.title
     })
 
     await song.save()
@@ -34,6 +36,47 @@ app.get('/songs/:id', async (req,res)=>{
         song = undefined
     }
     res.render('index', {song:song})
+})
+
+app.get('/list', async (req,res)=>{
+    let list
+    try{
+        list = await Song.find({})
+    } catch(e){
+        list = undefined
+    }
+    console.log(list)
+    res.render('index', {list:list})
+    /*Song.find({}, (err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            // send study history
+            res.render('index', {list: data});
+        }
+    });*/
+});
+
+app.get('/song_table/:page', function(req, res, next) {
+    var perPage = 9
+    var page = req.params.page || 1
+
+    Song
+        .find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec(function(err, songs) {
+            Song.count().exec(function(err, count) {
+                console.log(count)
+                if (err) return next(err)
+                res.render('table', {
+                    songs: songs,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                })
+            })
+        })
 })
 
 app.listen(5000)

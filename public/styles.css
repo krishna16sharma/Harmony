@@ -5,6 +5,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #DFF6FF;
+    font-family: sans-serif;
 }
 
 .piano{
@@ -38,21 +40,60 @@ body{
     background-color: #333;
 }
 
-.buttons, .song-link{
+.buttons, .song-buttons, .status{
     margin-bottom: 2rem;
     display: flex;
 }
 
+.status{
+    width: 50%;
+    justify-content: center;
+}
+
+.statusbar{
+    background-color: #00092C;
+    color: #47B5FF;
+    font-size:2rem;
+}
+
+.custom-navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #06283D;
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .custom-navbar li {
+    float: left;
+  }
+  
+  .custom-navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+
+  .custom-navbar li a:hover {
+    background-color: #08344f;
+  }
+
 .btn{
-    --hue: 100;
-    --saturation: 100;
+    --hue: 203;
+    --saturation:82%;
 
     padding: 0.5rem 1rem;
     border: none;
     font-size: 2rem;
-    background-color: hsl(var(--hue), var(--saturation), 50%);
+    background-color: hsl(var(--hue), var(--saturation), 13%);
+    color: white;
     margin-left: 1rem;
-    color: inherit;
     text-decoration: none;
     cursor: pointer;
 }
@@ -66,21 +107,72 @@ body{
 }
 
 .record-button{
-    --hue: 0;
-    --saturation: 0%;
+    --hue: 203;
+    --saturation: 82%;
 }
 
 .record-button.active{
+    --hue: 2;
     --saturation: 100%;
 }
 
-.play-button, .save-button, .song-link{
+.play-button, .modal-button, .song-link{
     display: none;
 }
 
-.play-button.show, .save-button.show, .song-link.show{
+.play-button.show, .modal-button.show, .song-link.show{
     display: block
 }
 
 
+.popup-position{
+    display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;  
+}
+#popup-wrapper{
+text-align: left;
+}
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

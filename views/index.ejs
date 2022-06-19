@@ -9,21 +9,34 @@
         const currentSong = <%- JSON.stringify(locals.song) || 'undefined' %>
         console.log("Current "+currentSong)
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/script.js" defer></script>
+    
     <title>Music</title>
 </head>
 <body>
+    <ul class="custom-navbar">
+        <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/song_table/1"><i class="fa fa-music"></i> All Songs</a></li>
+        <li style="float:right"><a class="active" href="#about">About</a></li>
+      </ul>
     <div class="buttons">
         <% if (locals.song == null) {%>
-            <button class="record-button btn">Record</button>
+            <button class="record-button btn"> <i class="fa-solid fa-microphone"></i> Record</button>
         <% } else { %>
             <a href="/" class="btn">Record new Song</a>
         <% } %>
-        <button class="play-button btn <%= locals.song != null ? 'show' : '' %>">Play</button>
-        <button class="save-button btn">Save</button>
+        <button class="play-button btn <%= locals.song != null ? 'show' : '' %>"> <i class="fa-solid fa-play"></i> Play</button>
+        <button id="modalBtn" class="modal-button btn">Save</button>
     </div>
-    <a href="#" class="btn song-link">View Song</a>
+    <div class="song-buttons">
+        <a href="#" class="btn song-link"> <i class="fa-solid fa-list-music"></i> View Recorded Song</a>
+    </div>
+    <div class="status">
+        <input id="statusbar" class="statusbar" type="text" size="25" value="Status: Idle" disabled>
+    </div>
     <div class="piano">
         <div data-note="C" class="key white"></div>
         <div data-note="Db" class="key black"></div>
@@ -38,7 +51,14 @@
         <div data-note="Bb" class="key black"></div>
         <div data-note="B" class="key white"></div>
     </div>
-
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Enter a title for your song</p>
+          <input type="text" name="title" id="song_title" required>
+          <button class="save-button btn"> <i class="fa-solid fa-microphone"></i> Save</button>
+        </div>
+    </div>
     <audio id="C" src="/notes/C.mp3"></audio>
     <audio id="Db" src="/notes/Db.mp3"></audio>
     <audio id="D" src="/notes/D.mp3"></audio>
