@@ -13,7 +13,8 @@ const noteSchema =  new mongoose.Schema({
 })
 
 const songSchema =  new mongoose.Schema({
-    notes: [noteSchema]
+    notes: [noteSchema],
+    title: String
 })
 
 module.exports = mongoose.model('Songs', songSchema)

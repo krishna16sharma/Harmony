@@ -16,6 +16,10 @@ body{
 .key{
     height: calc(var(--width) * 4);
     width: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }
 
 .white{
@@ -30,6 +34,7 @@ body{
 
 .black{
     --width: 60px;
+    color: white;
     background-color: black;
     margin-left: calc(var(--width)/-2);
     margin-right: calc(var(--width)/-2);
@@ -96,6 +101,8 @@ body{
     margin-left: 1rem;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 .btn:first-child{
