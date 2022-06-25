@@ -85,6 +85,11 @@ table {
     border-top: 1px solid #dee2e6;
     
   }
+
+  thead{
+    background-color: #06283D;
+    color: white;
+  }
   
   .table thead th {
     vertical-align: bottom;

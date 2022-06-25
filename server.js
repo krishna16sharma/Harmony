@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Song =  require('./models/song.js')
+var favicon = require('serve-favicon');
 const app = express()
 
 mongoose.connect('mongodb://localhost/songRecorder', {
@@ -10,6 +11,7 @@ mongoose.connect('mongodb://localhost/songRecorder', {
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.static('public'))
+app.use(favicon((__dirname+ '/public/Assets/favicon.ico'))); 
 
 app.get('/', (req, res) =>{
     res.render('index')
@@ -38,7 +40,7 @@ app.get('/songs/:id', async (req,res)=>{
     res.render('index', {song:song})
 })
 
-app.get('/list', async (req,res)=>{
+/*app.get('/list', async (req,res)=>{
     let list
     try{
         list = await Song.find({})
@@ -55,7 +57,11 @@ app.get('/list', async (req,res)=>{
             // send study history
             res.render('index', {list: data});
         }
-    });*/
+    });//
+});*/
+
+app.get('/about', async (req,res)=>{
+    res.render('about')
 });
 
 app.get('/song_table/:page', function(req, res, next) {
@@ -80,4 +86,5 @@ app.get('/song_table/:page', function(req, res, next) {
 })
 
 app.listen(5000)
+console.log("Listening to port 5000")
 

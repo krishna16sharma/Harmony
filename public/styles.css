@@ -1,6 +1,33 @@
+body, html{
+    margin:0;
+    padding:0;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+@media only screen and (orientation:portrait) {
+    body {
+      height: 100vw;
+      width: fit-content;
+      transform: rotate(90deg);
+    }
+  }
+
 body{
     margin: 0;
-    min-width: 100vh;
+    min-width: 100vh; /*100vh before*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,6 +38,7 @@ body{
 
 .piano{
     display: flex;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .key{
@@ -20,6 +48,11 @@ body{
     justify-content: center;
     align-items: center;
     font-weight: bold;
+}
+
+.keynote{
+    display: flex;
+    justify-content: center;
 }
 
 .white{
@@ -58,7 +91,7 @@ body{
 .statusbar{
     background-color: #00092C;
     color: #47B5FF;
-    font-size:2rem;
+    font-size:1.5rem;
 }
 
 .custom-navbar {
@@ -68,7 +101,7 @@ body{
     overflow: hidden;
     background-color: #06283D;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
   }
   
@@ -95,7 +128,7 @@ body{
 
     padding: 0.5rem 1rem;
     border: none;
-    font-size: 2rem;
+    font-size: 1.2rem;
     background-color: hsl(var(--hue), var(--saturation), 13%);
     color: white;
     margin-left: 1rem;
@@ -169,6 +202,9 @@ text-align: left;
     width: 50%; /* Could be more or less, depending on screen size */
   }
   
+  .modal p{
+    font-weight: bold;
+  }
   /* The Close Button */
   .close {
     color: #aaa;
@@ -182,4 +218,69 @@ text-align: left;
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .logo img{
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  }
+
+  .about_desc{
+    position: relative;
+    background-color: white;
+    padding: 1.2rem;
+    margin: 1rem;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  }
+
+  .about_desc h2{
+    text-decoration: underline;
+    margin-top: 2px;
+    margin-bottom: 0.5px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .keyofnote{
+        visibility: hidden;
+    }
+  }
+
+  @media only screen and  (orientation: landscape) and (max-width: 920px) {
+    body {
+        margin: 0;
+        min-width: fit-content; /*100vh before*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custom-navbar {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+      }
+
+    .white{
+        --width: 60px;
+    }
+    .black{
+        --width: 35px;
+    }
+
+    .statusbar{
+        font-size:1 rem;
+    }
+
+    .buttons, .song-buttons, .status{
+        margin-bottom: 1.2rem;
+    }
+
+    .keyofnote{
+        visibility: hidden;
+    }
   }
