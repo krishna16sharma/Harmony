@@ -4,7 +4,7 @@ const Song =  require('./models/song.js')
 var favicon = require('serve-favicon');
 const app = express()
 
-mongoose.connect('mongodb://localhost/songRecorder', {
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/songRecorder', {
     useNewUrlParser: true, useUnifiedTopology: true
 })
 
@@ -84,7 +84,7 @@ app.get('/song_table/:page', function(req, res, next) {
             })
         })
 })
-
-app.listen(5000)
+const port = process.env.PORT || 5000;
+app.listen(port)
 console.log("Listening to port 5000")
 
