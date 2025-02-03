@@ -5,7 +5,7 @@ const Song =  require('./models/song.js')
 var favicon = require('serve-favicon');
 const app = express()
 
-mongoose.connect('mongodb+srv://krishna16sharma:hvpFdOxMXQvhTEwY@harmony-cluster.6dlgi.mongodb.net/?retryWrites=true&w=majority&appName=Harmony-cluster' ||'mongodb://localhost/songRecorder', {
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/songRecorder', {
     useNewUrlParser: true, useUnifiedTopology: true
 })
 
